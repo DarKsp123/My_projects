@@ -59,3 +59,22 @@ print(col2)
 col2 = [row[1] for row in M if row[1] % 2 == 0] # Отфильтровать нечетные элементы
 print(col2)
 
+diag = [M[i][i] for i in [0, 1, 2]] # Собрать диагональ из матрцы
+print(diag)
+
+doubles = [c * 2 for c in 'spam'] # Повторить символы в строке
+print(doubles)
+
+print(list(range(4))) # От 0..3
+print(list(range(-6, 7, 2))) # от -6 до +6 с шагом 2
+
+math = [[x ** 2, x ** 3] for x in range(4)] # множество значений, фильтры if
+print(math)
+
+math = [[x, x / 2, x * 2] for x in range(-6, 7, 2) if x > 0] # множество значений, фильтры if(задаем матрицу по формуле)
+print(math)
+
+G = (sum(row) for row in M)
+print(next(G))
+
+
