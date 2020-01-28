@@ -222,8 +222,117 @@ print(data[4:8]) # Нарезать байты в середине
 print(list(data)) # Последовательность 8 битных данных
 print(struct.unpack('>i4sh', data)) # Снова распаковать в объекты
 
-                                    # Файлы с текстом Unicode
+                                    # Файлы с текстом Unicode стр 156-158(Важная тема для кодировки/декодировки)
 print('\n\t\t\t\t\t\t\t\t\t\t\t\t Файлы с текстом Unicode')
+
+S = 'sp\xc4m' # Текст Unicode, отличающийся от ASCII
+print(S)
+print(S[2]) # Последовательность символов
+file = open('unidata.txt', 'w', encoding='utf-8') # Записать/закодировать текст UTF-8
+print(file.write(S)) # Записано 4 символа
+file.close()
+text = open('unidata.txt', encoding='utf-8').read() # Прочитать/декодировать текст UTF-8
+print(text)
+print(len(text))
+
+raw = open('unidata.txt', 'rb').read() # Читать закодированные байты
+print(raw)
+print(len(raw)) # 5 байтов в кодировке UTF-8
+                    # При получение закодированного сообщения в электронной почте или через
+                    # сетевое подключение можно кодировать/декодировать в ручную
+print(text.encode('utf-8')) # В ручную кодировать в байты
+print(raw.decode('utf-8')) # В ручную декодировать в строку
+                        # Кодирование в другие кодировки
+print(text.encode('latin-1')) # Байты отличаются от других
+print(text.encode('utf-16')) # Байты отличаются от других
+print(len(text.encode('latin-1')), len(text.encode('utf-16')))
+print(b'\xff\xfes\x00p\x00\xc4\x00m\x00'.decode('utf-16')) # Декодируются в ту же самую строку
+                                        # Чтение декодирование в Python 2.X
+import codecs
+print(codecs.open('unidata.txt', encoding='utf-8').read()) # Python 2.X читать/декодировать текст
+print(open('unidata.txt', 'rb').read()) # Читать низкоуровневые байты
+print(open('unidata.txt').read()) # Так же низкоуровневые/декодирование
+
+                                # Прочие основные типы стр.158
+print('\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Прочие основные типы')
+# Множества вызываются с помощью встроенной функции set
+X = set('spam') # Создать множество из последовательности
+Y = {'h', 'a', 'm'} # Создать мнодество с помощью литералов множеств
+print(X, Y) # Кортеж из двух множеств без круглых скобок
+print(X & Y) # Пересечение
+print(X | Y) # Объединение
+print(X - Y) # Разность
+print(X > Y) # Надмножество
+print({n ** 2 for n in [1, 2, 3, 4]}) # Включение множеств
+print(list(set([1, 2, 1, 3, 1]))) # Фильтрация дубликатов(возмрожно неупорядоченных)
+print(set('spam') - set('ham')) # Нахождение разностей в коллекциях
+print(set('spam') == set('asmp')) # Нейтральная к порядку проврка(Равенство 'spam' == 'asmp' дает False)
+print('p' in set('spam'), 'p' in 'spam', 'ham' in ['eggs', 'spam', 'ham']) # Проверка челенства в in
+print(1 / 3) # Математика с плавающей точкой
+print((2 / 3) + (1 / 2))
+import decimal # Десятичные числа: фиксированная точность
+d = decimal.Decimal('3.141')
+print(d + 1)
+decimal.getcontext().prec = 2
+print(decimal.Decimal('1.00') / decimal.Decimal('3.00'))
+from fractions import Fraction # Дроби: числитель + знаменатель
+f = Fraction(2, 3)
+print(f + 1)
+print(f + Fraction(1, 2))
+                                # Булевские значения
+print(1 > 2, 1 < 2) # Булевские значения
+print(bool('spam')) # Булевское значение объекта
+X = None # Заполнитель None
+print(X)
+L = [None] * 100 # Инициализировать список сотней объектов None
+print(L)
+                                        # Как нарушить гибкость кода(Объект типа type)
+print('\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Как нарушить гибкость кода(Объект типа type)')
+print(type(L)) # Типом L является list
+print(type(type(L))) # Даже типы явлюятся объектами
+if type(L) == type([]): # Проверка типа при необходимости
+    print('yes')
+if type(L) == list: # Использование имени типа
+    print('yes')
+if isinstance(L, list): # Объектно-ориентированная проверка
+    print('yes')
+
+                                        # Классы, определяемы пользователем. стр. 161
+print('\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Классы, определяемые пользователем стр. 161')
+
+class Worker:
+    def __init__(self, name, pay): # инициализировать при создание
+        self.Name = name # self - новый объект
+        self.pay = pay
+    def lastName(self):
+        return self.Name.split() [-1] # Разбить строку по пробелам
+    def giveRaise(self, percent):
+        self.pay *= (1.0 + percent) # Обновить pay на месте
+bob = Worker('Bob Smith', 50000) # Создать два экземпляра
+sue = Worker('Sue Jones', 60000) # Каждый имеет атрибут name и pay
+print(bob.lastName())
+print(sue.lastName())
+sue.giveRaise(.11)
+print(sue.pay)
+                                    # Заканчивается введине, начинаем погружение :D
+                                    # Числовые типы
+print('\n\t\t\t\t\t\t\t\t\t\t\t\t\t Закончили введение, начали погружение :D'
+      '\n\t\t\t\t\t\t\t\t\t\t\t\t\t Числовые типы')
+                                    # Оснвы числовых типов стр 165
+print('\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Основы числовых типов стр. 165')
+
+print(int(3.1415))
+print(float(3))
+
+a = 3       # Имя создается: не объявляется за ранее
+b = 4
+print(a + 1, a - 1)
+
+
+
+
+
+
 
 
 
