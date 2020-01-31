@@ -422,6 +422,107 @@ print(S1 > {1, 3}) # Надмножество
 S = set() # Инициализация пустого множества
 S.add(1.23)
 print(S)
+S.add((1, 2, 3)) # Списки(list) и словари(dict) не допускаются, но кортежи разрешены
+print(S)
+S = S | {(4, 5, 6), (1, 2, 3)} # Объединение, тоже что и S.union()
+print(S)
+                                            # Включение мноеств в Python
+print('\n\t\t\t\t\t\t\t\t\t\t\t\t\t Включение множеств в Python')
+print({x ** 2 for x in [1, 2, 3, 4]}) # Включение множества в Python
+print({x for x in 'spam'}) # то же, что и set('spam')
+print({c * 4 for c in 'spam'}) # Множество накопленных результатов выражения
+print({c * 4 for c in 'spamham'})
+S = {c * 4 for c in 'spam'}
+S = S | {'mmmm', 'xxxx'}
+print(S)
+S = S & {'mmmm', 'xxxx'}
+print(S)
+L = [1, 2, 1, 3, 2, 4, 5]
+print(set(L)) # Удаление дубликатов
+L = list(set(L)) # Удаление дубликатов
+print(L)
+print(list(set(['yy', 'cc', 'aa', 'xx', 'dd', 'aa'])))
+K = set([1, 3, 5, 7]) - set([1, 2, 4, 5, 6]) # Найти различия в списках
+print(K)
+K = set('abcdefg') - set('abdghij') # Найти различия в строках
+print(K)
+K = set('spam') - set(['h', 'a', 'm']) # найти различия, разнородные типы
+print(K)
+K = set(dir(bytes)) - set(dir(bytearray)) # В bytes, но не в bytearray
+print(K)
+K = set(dir(bytearray)) - set(dir(bytes))
+print(K)
+L1, L2 = [1, 3, 5, 2 ,4], [2, 5, 3, 4, 1]
+print(L1 == L2) # В последовательностях порядок имеет значение
+print(set(L1) == set(L2))
+print(sorted(L1) == sorted(L2))
+print(L1, L2)
+engineers = {'bob', 'sue', 'ann', 'vic'}
+managers = {'tom', 'sue'}
+print('bob' in engineers) # Являеется ли сотрудник bob инженером?
+print(engineers & managers) # Кто одновременно инженер и менеджер?
+print(engineers | managers) # Все сотрудники в обеих катогориях
+print(engineers - managers) # Инженеры не являющиеся менеджерами
+print(managers - engineers) # Менеджеры, не являющиеся инженерами
+print(engineers > managers) # Все ли менеджеры - инженеры? (Надмножества)
+print({'bob', 'sue'} < engineers) # Оба ли сотрудника инженеры? (Подмножества)
+print((managers | engineers) > managers) # Все сотрудники - надмножество менеджеров?
+print(managers ^ engineers) # Кто находится в одной категории, но не в обеих?
+print((managers | engineers) - (managers ^ engineers)) # Пересичение!
+
+                                            # Булевские значения
+print('\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Булевские значения')
+print(type(True))
+print(isinstance(True, int))
+print(True == 1) # То же самое значение
+print(True is 1) # Но другой объект: см. следующую главу
+print(True or False) # То же что и 1 or 0
+print(True + 4) # М-да
+
+                                                # Динамическая типизация
+print('\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t Динамическая типизация'
+      '\n\t\t\t\t\t\t\t\t\t\t\t\t Разделяемы ссылки и изменения на месте')
+
+L1 = [2, 3, 4] # Изменяемый объект
+L2 = L1 # Создает ссылку на тот же самый объект
+L1[0] = 24 # Изменение на месте
+print(L1, L2) # L1 и L2 отличаются от первоначального значения
+L1 = [2, 3, 4]
+L2 = L1[:] # Соззать копию L1 (или list(L1), copy.copy(L1) и т.д.)
+L1[0] = 24
+print(L1, L2)
+                                                # Фундаментальные основы строк
+print('\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t Фундаментальные основы строк'
+      '\n\t\t\t\t\t\t\t\t\t\t\t ')
+
+myjob = 'hacker'
+for c in myjob: # проходит по элементам с выводом каждого
+    print(c, end = ' ') # end = говорит о разделителе между символами вывода
+
+print('\n\t\t\t\t\t\t\t\t\t\t\t\t\t Расширенное нарезание: третий предел и объекты срезов')
+S = 'abcdefghijklmnop'
+print(S[1:10:2]) # пропуск элементов
+print(S[::2])
+S = 'hello'
+print(S[::-1]) # Смена порядка следования элементов на противоположный
+S = 'abcedfg'
+print(S[5:1:-1]) # Смысл границ изменяется
+print('spam'[1:3]) # Синтаксис нарезания
+print('spam'[slice(1, 3)]) # Индексация посредством объектов срезов
+print('spam'[::-1])
+print('spam'[slice(None, None, -1)])
+import sys
+print(sys.argv)
+                                            # Изменение строк, часть 1
+print('\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t Изменения строк, часть 1')
+S = 'spam'
+S = S + 'SPAM!' # Чтобы изменить строку, нужно создать новую
+print(S)
+S = S[:4] + 'Burger' + S[-1]
+print(S)
+S = 'splot'
+S = S.replace('pl', 'pamal')
+print(S)
 
 
 
