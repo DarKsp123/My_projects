@@ -523,6 +523,117 @@ print(S)
 S = 'splot'
 S = S.replace('pl', 'pamal')
 print(S)
+                                            # Строковые методы
+                                     # Синтаксис - объект.метод(аргументы)
+
+print('\n\t\t\t\t\t\t\t\t\t\t\t\t\t Строковые методы')
+S = 'spam'
+result = S.find('pa') # Вызов метода find для поиска 'pa' в строке S
+print(result)
+S = 'spammy'
+S = S[:3] + 'xx' + S[5:] # Нарезать сегменты из S
+print(S)
+print('aa$bb$cc$dd'.replace('$', 'SPAM'))
+S = 'xxxxSPAMxxxxSPAMxxxx'
+where = S.find('SPAM') # Поиск позиции
+print(where) # Нашлась по смещению 4
+S = S[:where] + 'EGGS' + S[(where + 4):]
+print(S)
+S = 'xxxxSPAMxxxxSPAMxxxx'
+print(S.replace('SPAM', 'EGGS'))
+print(S.replace('SPAM', 'EGGS', 1))
+S = 'spammy'
+L = list(S) # Приобразуем строку в объект
+print(L)
+L[3] = 'x' # Работает для списков, но не для строк
+L[4] = 'x' # Работает для списков, но не для строк
+print(L)
+S = ''.join(L) # Преобразуем обратно в строку
+print(S)
+print(', '.join(['eggs', 'sausage', 'ham', 'toast'])) # Объект есть разделитель, в данном случае 'SPAM'
+line = 'aaa bbb ccc'
+col1 = line[0:3] # методики нарезания
+col3 = line[8:] # методики нарезания
+print(col1, col3)
+line = 'aaa bbb ccc'
+cols = line.split() # Разбиение строк по методу разделителя( в данном случае пусто, по умолчанию пробел)
+print(cols)
+line = 'bob, hacker, 40'
+print(line.split(',')) # В данном примере разделить ',', применяется для анализа данных БД
+line = "i'mSPAMaSPAMlumberjack"
+print(line.split('SPAM')) # Разделитель может быть длиннее одного символа
+                                # Синтаксис - x.метод(аргумент)
+S = 'a+b+c'
+x = S.replace('+', 'spam')
+print(x)
+                                # Основы выражений форматирования
+print('\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Основы выражений форматирования')
+
+print('That is %d %s bird!' % (1, 'dead')) # Выражение формата
+exclamantion = 'Ni'
+print('The knights who say %s!' % exclamantion) # Подстановка строки
+print('%d %s %g you' % (1, 'spam', 4.0)) # Подстановки, специфичные для типов
+print('%s -- %s -- %s' % (42, 3.14159, [1, 2, 3])) # Все типы соответствующие цели %s
+x = 1234
+res = 'integers: ...%d...%-6d...%06d' % (x, x, x)
+print(res)
+x = 1.23456789
+print('%e | %f | %g' % (x, x, x))
+print('%-6.2f | %05.2f | %+06.1f' % (x, x, x))
+print('%s' % x, str(x))
+print('%f, %.2f, %.*f' % (1/3.0, 1/3.0, 4, 1/3.0)) # Указатель '*' - когда размеры не известны, можно применять вычисляемые гирину и точность.
+                                                   # 4 - дает точность
+                                        # Выражения форматирования, основанные на словаре
+print('\n\t\t\t\t\t\t\t\t\t\t\t\t\t Выражения форматирования, основанные на словаре')
+print('%(qty)d more %(food)s' % {'qty': 1, 'food': 'spam'})
+replay = '''
+Greetings...
+Hello %(name)s!
+Your age is %(age)s'''   # Шаблон с целями подстановки
+values = {'name': 'Bob', 'age': 40} # Создание значений для подстановки
+print(replay % values) # Выполнение подстановки
+food = 'spam'
+qty = 10
+print('%(qty)d more %(food)s' % vars())
+                                        # Оснсовы методов форматирования
+print('\n\t\t\t\t\t\t\t\t\t\t\t\t\t Основы методов форматирования')
+template = '{0}, {1} and {2}' # По позициям
+print(template.format('spam', 'ham', 'eggs'))
+template = '{motto}, {pork} and {food}' # По ключевым словам
+print(template.format(motto = 'spam', pork = 'ham', food = 'eggs'))
+template = '{motto}, {0} and {food}' # По позициям и ключевым словам
+print(template.format('ham', motto = 'spam', food = 'eggs'))
+template = '{}, {} and {}' # По относительным позициям
+print(template.format('spam', 'ham', 'eggs'))
+                            # Тоже самое чт ои примеры выше, только по средствам выражения
+template = '%s, %s and %s'
+print(template % ('spam', 'ham', 'eggs'))
+template = '%(motto)s, %(pork)s and %(food)s'
+print(template % dict(motto = 'spam', pork = 'ham', food = 'eggs'))
+print('{motto}, {0} and {food}'.format(42, motto = 3.14, food = [1, 2, 3]))
+X = '{motto}, {0} and {food}'.format(42, motto = 3.14, food = [1, 2])
+print(X)
+print(X.split(' and '))
+Y = X.replace('and', 'but under no circumstances')
+print(Y)
+                        # Добавление ключей, атрибутов и смещений
+print('\n\t\t\t\t\t\t\t\t\t Добавление ключей, атрибутов и смещений')
+import sys
+print('My {1[kind]} runs {0.platform}'.format(sys, {'kind': 'laptop'})) # Словарь индексируется по ключу kind и затем извлекается атрибут platform из объекта импортированного модуля sys
+print('My {map[kind]} runs {sys.platform}'.format(sys = sys, map = {'kind': 'laptop'})) # Делается тоже самое, но вместо позиций применяются ключевые слова
+somelist = list('SPAM')
+print(somelist)
+print('first = {0[0]}, third = {0[2]}'.format(somelist))
+print('first = {0}, last = {1}'.format(somelist[0], somelist[-1]))
+parts = somelist[0], somelist[-1], somelist[1:3]
+print('first = {0}, last = {1}, middle = {2}'.format(*parts))
+
+
+
+
+
+
+
 
 
 
