@@ -627,9 +627,79 @@ print('first = {0[0]}, third = {0[2]}'.format(somelist))
 print('first = {0}, last = {1}'.format(somelist[0], somelist[-1]))
 parts = somelist[0], somelist[-1], somelist[1:3]
 print('first = {0}, last = {1}, middle = {2}'.format(*parts))
+print('{0:10} = {1:10}'.format('spam', 123.4567))
+print('{0:>10} = {1:<10}'.format('spam', 123.4567))
+print('{0.platform:>10} = {1[kind]:<10}'.format(sys, dict(kind='laptop')))
+print('{0:e}, {1:.3e}, {2:g}'.format(3.14159, 3.14159, 3.14159))
+print('{0:f}, {1:.2f}, {2:06.2f}'.format(3.14159, 3.14159, 3.14159))
+print('{0:x}, {1:o}, {2:b}'.format(255, 255, 255)) # Шестнадцатиричный, восьмеричный, двоичный
+print(bin(255), int('11111111', 2), 0b11111111) # Другие преобразования из/в двоичную
+print(hex(255), int('FF', 16), 0xFF) # Другие преобразования в/из шестнадцатиричного
+print(oct(255), int('377', 8), 0o377) # Другие рпеобразования в/из восьмеричного
+print('{0:.2f}'.format(1 / 3.0)) # Жестко закодированные параметры
+print('%.2f' % (1 / 3.0)) # то же самое для выражения
+print('{0:.{1}f}'.format(1 / 3.0, 4)) # Получение значений из аргумента
+print('%.*f' % (4, 1 / 3.0)) # Тоже самое для выражения
+print('{0:.2f}'.format(1.2345)) # Строковый метод
+print(format(1.2345, '.2f')) # Встроенная функция format
+print('%.2f' % 1.2345) # Выражение
 
+print('%s, %s and %s' % (3.14, 42, [1, 2])) # произвольные типы
+print('My %(kind)s runs %(platform)s' % {'kind': 'laptop', 'platform': sys.platform})
+print('My %(kind)s rund %(platform)s' % dict(kind = 'laptop', platform = sys.platform))
+somelist = list('SPAM')
+parts = somelist[0], somelist[-1], somelist[1:3]
+print('first = %s, last = %s, middle = %s' % parts)
+                                    # Жестко закодированные сылки в обоих случаях
+import sys
+print('My {1[kind]:<8} runs {0.platform:>8}'.format(sys, {'kind': 'laptop'}))
+print('My %(kind)-8s runs %(plat)8s' % dict(kind = 'laptop', plat = sys.platform))
+                                    # Заблаговременное создание данных двумя способами
+data = dict(platform = sys.platform, kind = 'laptop')
+print('My {kind:<8} runs {platform:>8}'.format(**data))
+print('My %(kind)-8s runs %(platform)8s' % data)
+                                    # Дополнительные возможности
+print('\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t Дополнительные возможности')
+print('{0:b}'.format((2 ** 16) - 1)) # код двоичного формата в методе(только)
+print(bin((2 ** 16) - 1)) # Другие более универсальные варианты
+print('%s' % bin((2 ** 16) -1)) # Подходит для метода и выражения
+print('{}'.format(bin((2 ** 16) - 1))) # С относительной нумерацией
+print('%s' % bin((2 ** 16) - 1)[2:]) # Вырезание 0b для получения точного эквивалента
+print('{:,d}'.format(999999999999)) # Новая возможность метода str.format
+                                    # Гибкий синтаксис ссылок
+D = dict(name = 'Bob', job = 'dev')
+print('{0[name]} {0[job]} {0[name]}'.format(D)) # Метод, ссылки на ключи
+print('{name} {job} {name}'.format(**D)) # Метод, аргументы из словаря
+print('%(name)s %(job)s %(name)s' % D) # Выражения, ссылки на ключи
+print('The {0} side {1} {2}'.format('bright', 'of', 'life'))
+print('The {} side {} {}'.format('bright', 'of', 'life'))
+print('The %s side %s %s' % ('bright', 'of', 'life'))
+print('{0:f}, {1:.2f}, {2:05.2f}'.format(3.14159, 3.14159, 3.14159))
+print('{:f}, {:.2f}, {:06.2f}'.format(3.14159, 3.14159, 3.14159))
+print('%f, %.2f, %06.2f' % (3.14159, 3.14159, 3.14159))
+                                    # Эстетика или практичность
+print('%.2f' % 1.2345) # Одиночное значение
+print('%.2f %s' % (1.2345, 99)) # Кортеж с множеством значений
+print('%s' % 1.23) # Одиночное значение само по себе
+print('%s' % (1.23,)) # Одиночное значение в кортеже
+print('%s' % ((1.23,),)) # Одиночное значение, являющееся кортежем
+                                # метод форматирования
+print('{0:.2f}'.format(1.2345)) # Одиночное значение
+print('{0:.2f} {1}'.format(1.2345, 99)) # Мноество значений
+print('{0}'.format(1.23)) # Одиночное значение, само по себе
+print('{0}'.format((1.23,))) # Одиночное значение, являющееся кортежем
 
+def myformat(fmt, args): return fmt % args
+print(myformat('%s %s', (88, 89))) # Вызов вашего объекта функции
+print(str.format('{} {}', 88, 89)) # Или вызов встроенной функции
+          #otherfunction(myformat) # Ваша функция - тоже объект
 
+                                # Списки и словари
+print('\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Списки и словари')
+
+print(len([1, 2, 3])) # Длина
+print([1, 2, 3] + [4, 5 ,6]) # Конкатенация
+print(['Ni!'] * 4) # Повторение
 
 
 
