@@ -804,10 +804,84 @@ L[1:] = []
 print(L)
 L[0] = []
 print(L)
+                                                        # Словари
+print('\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Словари')
 
+D = {'spam': 2, 'ham': 1, 'eggs': 3} # Создание словаря
+print(D['spam']) # извлечение значения по ключу
+print(D) # Порядок перемешан
+print(len(D)) # Кол-во элементов в словаре
+print('ham' in D) # Проверка членства
+print(list(D.keys())) # Создание нового списка ключей в D
+print(D)
+D['ham'] = ['grill', 'bake', 'fry'] # Изменение элемента (значение - список)
+print(D)
+del D['eggs'] # Удаление элемента
+print(D)
+D['brunch'] = 'Bacon' # Добавление новго элемента
+print(D)
+D = {'spam': 2, 'ham': 1, 'eggs': 3}
+print(list(D.values())) # Возвращает значения словаря
+print(list(D.items())) # Возвращает кортежи с парами
+print(D.get('spam')) # проверка на ключ (ключ присутствует)
+print(D.get('toast')) # Ключ отсутствует
+print(D.get('toast', 88)) # присвоили ключ
+D2 = {'toast': 4, 'muffin': 5} # Заводим новый словарь
+D.update(D2) # Объединение словарей
+print(D)
 
+                                        # Извлечение из словаря по ключу
+D.pop('muffin') # Удаление ключа и возвращение связанного с ним значения
+D.pop('toast') # Удаление ключа и возвращение связанного с ним значения
+print(D)
 
+                                        # Извлечение из списка по позиции
+L = ['aa', 'bb', 'cc', 'dd']
+L.pop() # Удаление и возвращение из конца
+print(L)
+L.pop(1) # Удаление по указанной позиции
+print(L)
 
+                                        # Пример: база данных о фильмах
+print('\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Пример: база данных о фильмах')
 
+table = {'1975': 'Holy Grail',
+         '1979': 'Life of Brian',
+         '1983': 'The Meaning of Life'}             # Ключ: Значение
+year = '1983'
+movie = table[year]     # Словарь[Ключ] => Значение
+print(movie)
+for year in table:
+    print(year + '\t' + table[year])
+
+table = {'Holy Grail': '1975',
+         'Life of Brain': '1979',
+         'The Meaning of Life': '1983'}       # Ключ => Значение (название => год)
+print(table['Holy Grail'])
+print(list(table.items()))      # Значение => Ключ (год => название)
+print([title for (title, year) in table.items() if year == '1975']) # Синтаксис 'включения'
+K = 'Holy Grail'
+print(table[K])     # Ключ => Значение (номральное использование)
+V = '1975'
+print([key for (key, value) in table.items() if value == V])        # Значение => Ключ
+print([key for key in table.keys() if table[key] == V])     # То же самое
+
+D = {}
+D[99] = 'spam'
+print(D[99])
+print(D)
+
+table = {1975: 'Holy Grail',                # Ключи являются целыми числами,
+         1979: 'Life of Brian',             #    не строками
+         1983: 'The Meaning of Life'}
+print(table[1975])
+print(list(table.items()))
+
+Matrix = {}
+Matrix[(2, 3, 4)] = 88
+Matrix[(7, 8, 9)] = 99
+X = 2; Y = 3; Z = 4         # Отделяет операторы
+print(Matrix[(X, Y, Z)])
+print(Matrix)
 
 
