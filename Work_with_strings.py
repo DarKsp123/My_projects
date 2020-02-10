@@ -883,5 +883,236 @@ Matrix[(7, 8, 9)] = 99
 X = 2; Y = 3; Z = 4         # Отделяет операторы
 print(Matrix[(X, Y, Z)])
 print(Matrix)
+                                            # Избегание ошибок, связанных с отсутствующими ключами
+print('\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Избегание ошибок, связанных с отсутствующими ключами')
+if (2, 3 ,6) in Matrix:                 # Проверка наличия ключа перед извлечением
+    print(Matrix[(2, 3, 6)])
+else:
+    print(0)
+
+try:                                    # Попытка инжексации
+    print(Matrix[(2, 3, 6)])            # перехват и восстановление
+except KeyError:
+    print(0)
+
+print(Matrix.get((2, 3, 4), 0)) # Существует: извлеч и возвратить
+print(Matrix.get((2, 3, 6), 0)) # Не существует: использовать стандартный аргумент
+
+                                        # Вложение словарей
+print('\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Вложение слвоарей')
+rec = {}
+rec['name'] = 'Bob'
+rec['age'] = 40.5
+rec['job'] = 'developer/manager'
+print(rec['name'])
+rec = {'name': 'Bob',
+       'jobs': ['developer', 'manager'],
+       'web': 'www.bobs.org/~Bob',
+       'home': {'state': 'Overworked', 'zip': 12345}}
+print(rec)
+print(rec['name'])
+print(rec['jobs'])
+print(rec['jobs'][1])
+print(rec['home']['zip'])
+
+db = []
+db.append(rec)                  # База данных в форме списка
+#db.append(other)
+db[0]['jobs']
+print(db)
+
+db = {}
+db['bob'] = rec
+#db['sue'] = other
+print(db)
+                                # Другие способы создания словарей
+print('\n\t\t\t\t\t\t\t\t\t\t\t\t Другие способы создания словарей')
+
+print({'name': 'Bob', 'age': 40}) # Традиционное литеральное выражение
+D = {} # Динамическое рписваивание по ключам
+D['name'] = 'Bob'
+D['age'] = 40
+print(D)
+print(dict(name = 'Bob', age = 40)) # Форма dict с ключевыми аргументами
+print(dict([('name', 'Bob'), ('age', 40)])) # Форма dict с кортежем "ключ/значение"
+
+print(dict.fromkeys(['a', 'b'], 0)) # создаем словарь, передавая список ключей и начальную велечину( по умолчанию присваивается 0)
+
+L = ['Bob', 40.5, ['dev', 'mgr']] # Запись на основе списка
+print(L[0])
+print(L[1])             # Позиция/числа для полей
+print(L[2][1])
+
+D = {'name': 'Bob', 'age': 40.5, 'jobs': ['dev', 'mgr']}
+print(D['name'])
+print(D['age'])                 # Запись на основе словаря
+print(D['jobs'][1])             # Имена выразительнее чисел
+
+D = dict(name = 'Bob', age = '40.5', jobs = ['dev', 'mgr'])
+print(D['name'])
+D['jobs'].remove('mgr')
+print(D)
+
+D = {}
+D['state1'] = True
+print('state1' in D) # Словарь посещенных состояний
+S = set()
+S.add('state1')
+print('state1' in S) # То же самое, но с использованием множества
+
+print(list(zip(['a', 'b', 'c'], [1, 2, 3]))) # Упаковка вместе ключей и значений
+D = dict(zip(['a', 'b', 'c'], [1, 2, 3])) # Создание словаря из результата zip
+print(D)
+
+D = {k: v for (k, v) in zip(['a', 'b', 'c'], [1, 2, 3])} # Создаем словарь с парами "ключ/значение" согласно описанию (k: v)
+print(D)
+
+D = {x: x**2 for x in [1, 2, 3, 4]}
+print(D)
+D = {c: c * 4 for c in 'SPAM'}              # Проход в цикле
+print(D)                                    #   по любому итерируемому объекту
+
+D = {c.lower(): c + '!' for c in ['SPAM', 'EGGS', 'HAM']}
+print(D)
+
+D = dict.fromkeys(['a', 'b', 'c'], 0) # Инициализация словаря из ключей
+print(D)
+D = {k: 0 for k in ['a', 'b', 'c']} # тоже самое, но посредством включения
+print(D)
+D = dict.fromkeys('spam') # Другие итерируемы объекты, стандартное значение
+print(D)
+D = {k: None for k in 'spam'}
+print(D)
+
+D = dict(a = 1, b = 2, c = 3)
+print(D)
+K = D.keys() # Создается объект представления, не список
+print(K)
+print(list(K)) # Принудительно создать реальный список, если нужно
+V = D.values() # То же самое для представлений значений и элементов
+print(V)
+print(list(V))
+print(D.items())
+print(list(D.items()))
+print(list(K)[0])
+for k in D.keys(): print(k) # В циклах итераторы используются автоматически
+D = {'a': 1, 'b': 2, 'c': 3}
+print(D)
+K = D.keys()
+V = D.values()
+print(list(K))      # Представление поддерживает тот же порядок, что и словарь
+print(list(V))
+del D['b'] # Изменение словаря на месте
+print(D)
+print(list(K)) # Изменение отражается в любых текущих объектах представлений
+print(list(V))
+
+print(K, V)
+print(K | {'x': 4}) # Представления ключей (и некоторых элементов) подобны множествам
+#print(V & {'x': 4}) # Не поддерживаются
+#print(V & {'x':4}.values()) # Не поддерживаются
+D = {'a': 1, 'b': 2, 'c': 3}
+print(D.keys() & D.keys()) # Пересечение представлений ключей
+print(D.keys() & {'b'}) # Пересечение представления ключей и множества
+print(D.keys() & {'b': 1}) # Пересечение представления ключей и словаря
+print(D.keys() | {'b', 'c', 'd'}) # Объединение представления ключей и множества
+
+D = {'a': 1}
+print(list(D.items())) # Представления элементов подобны множествам, если хэшируемы
+print(D.items() | D.keys()) # объединение представления и представления
+print(D.items() | D) # Словарь трактуется так же, как его ключи
+print(D.items() | {('c', 3), ('d', 4)}) # Множество пар "ключ/значение"
+print(dict(D.items() | (('c', 3), ('d', 4)))) # Словарь так же принимает итерируемые множества
+
+D = {'a': 1, 'b': 2, 'c': 3}
+print(D)
+Ks = D.keys()
+Ks = list(Ks)               # Преобразовать в список и затем уже сортировать
+Ks.sort()
+for k in Ks: print(k, D[k])
+Ks = D.keys()                               # Или можно вызвать sorted на ключах
+for k in sorted(Ks): print(k, D[k])         # sorted принимает любой итерируемый объект (sorted возвращает свой результат)
+for k in sorted(D): print(k, D[k]) # Сортировка словаря напрямую (итераторы словаря возвращают ключи)
+print('c' in D)     # проврека на наличие ключа
+print('x' in D)
+if 'c' in D:print('present', D['c'])    # Ветвление по результату
+print(D.get('c')) # Извлечение со стандартным значением
+print(D.get('x'))
+if D.get('c') != None: print('present', D['c']) # Еще один вариант
+
+'''
+import dbm
+file = dbm.open('filename')     # Связаться с файлом
+file['key'] = 'data'            # Сохранить данные по ключу
+data = file['key']              # Извлеч данные по ключу
+'''
+
+'''
+import cgi
+form = cgi.FieldStorage() # Разбор данных формы
+if 'name' in form:
+    showReply('Hello, ' + form['name'].value)
+'''
+
+                                            # Кортежи, файлы и все остальное
+print('\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Кортежи, файлы и все остальное')
+
+print((1, 2) + (3, 4)) # Конкатенация
+print((1, 2) * 4) # Повторение
+T = (1, 2, 3, 4) # Индексация, нарезание
+print(T[0], T[1:3])
+x = 40 # Целое число!
+y = (40,) # Кортеж, содержащий целое число
+T = ('cc', 'aa', 'dd', 'bb')
+tmp = list(T) # Создание списка из элементов кортежа
+tmp.sort() # Сортировка списка
+print(tmp)
+T = tuple(tmp)  # Создание кортежа из элементов списка
+print(T)
+print(sorted(T))    # Либо использование встроенной функции sorted и экономия двух шагов
+T = (1, 2, 3, 4, 5)
+L = [x + 20 for x in T]
+print(L)
+T = (1, 2, 3, 2, 4, 2) # Методы кортежей
+print(T.index(2)) # Смещение первого появления элемента 2
+print(T.index(2, 2))    # Смещение появления элемента 2 после смещения 2
+print(T.count(2))   # Сколько всего элементов 2
+T = (1, [2, 3], 4)
+T[1][0] = 'spam'    # Изменяемы объекты внутри кортежа можно модифицировать. (T[1] = 'spam') - подержит неудачу
+print(T)
+bob = ('Bob', 40.5, ['dev', 'mgr'])     # Запись в виде кортежа
+print(bob)
+print(bob[0], bob[2])   # Доступ по позиции
+bob = dict(name = 'Bob', age = 40.5, jobs = ['dev', 'mgr'])     # Запись в виде словаря
+print(bob)
+print(bob['name'], bob['jobs']) # Доступ по ключу
+print(tuple(bob.values())) # Преобразование значений в кортеж
+print(list(bob.items())) # Преобразование элементов в список кортежей
+
+from collections import namedtuple  # Импортирование типа расширения
+Rec = namedtuple('Rec', ['name', 'age', 'jobs'])    # Создание производного класса
+bob = Rec('Bob', age = 40.5, jobs = ['dev', 'mgr']) # Запись ввиде именованного кортежа
+print(bob)
+print(bob[0], bob[2])   # Доступ по позиции
+print(bob.name, bob.jobs)   # Доступ по атрибуту
+O = bob._asdict()   # Форма, похожая на словарь
+print(O)
+print(O['name'], O['jobs']) # Доступ также и по ключу
+bob = Rec('Bob', 40.5, ['dev', 'mgr']) # Для кортежей и именованных кортежей
+name, age, jobs = bob   # присвоение кортежей
+print(name, jobs)
+for x in bob: print(x)  # Итерационный контекст
+bob = {'name': 'Bob', 'age': 40.5, 'jobs': ['dev', 'mgr']}
+name, age, job = bob.values()
+print(name, job)    # эквивалент dict (но порядок может вырьироваться)
+for x in bob: print(bob[x]) # проход по ключам, индексация значений
+
+                                        #Файлы
+print('\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Файлы')
+
+
+
+
+
 
 
