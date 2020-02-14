@@ -29,3 +29,20 @@ while True:
         else:
             print(num ** 2)
 print('Bye')
+
+                                        # Вложение кода на 3 уровня в глубину с првоеркой исключений блоком try
+print('\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Вложение кода на 3 уровня в глубину с првоеркой исключений блоком try')
+while True:
+    reply = input('Введите текст: ')
+    if reply == 'stop':
+        break
+    try:
+        num = float(reply)
+        if num < 20:
+            print('low')
+        else:
+            print(num ** 2)
+    except:
+        print('Bad!' * 8)
+print('Bye')
+

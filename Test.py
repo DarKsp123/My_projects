@@ -8,3 +8,6 @@ print(x * 8)
 #input('Press enter to exit: ')
 
 # second step
+
+
+
