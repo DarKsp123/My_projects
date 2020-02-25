@@ -1368,25 +1368,100 @@ print(x, y, z)      # Вывод трех объектов со стандарт
 print(x, y, z, sep='') # Подавить разделитель
 print(x, y, z, sep=', ')    # Специальный разделитель
 print(x, y, z, end='')      # Подавление разрыва строк(задаем конец строки)
-print(x, y, z, sep='...', file=open('data.txt', 'w'))
+print(x, y, z, sep='...', end='', file=open('data.txt', 'w'))   # Вывод в файл
+print(open('data.txt').read())  # Отображение текста файла
+
+                                    # Создание более сложной строки для функции print(используя строковые инструменты)
+text = '%s: %-.4f, %05d' % ('Result', 3.14159, 42)
+print(text)
+
+                                    # Проверка if и правила синтаксиса
+print('\n\t\t\t\t\t\t\t\t\t\t\t\t Проверка if и правила синтаксиса')
+
+# Пример оператора if со всеми блоками
+x = 'killer rabbit'
+if x == 'roger':
+    print('shave and a haircut')
+elif x == 'bugs':
+    print("what's up doc?")
+else:
+    print('Run away! Run away!')
+
+choice = 'ham'
+print({'spam': 1.25,                        # Аналог switch на основе словаря
+       'ham': 1.99,                         # Для получения стандартного значения
+       'eggs': 0.99,                        # используется has_key или get
+       'bacon': 1.10}[choice])
 
 
+if choice == 'spam':            # Эквивалентный оператор if
+    print(1.25)
+elif choice == 'ham':
+    print(1.99)
+elif choice == 'eggs':
+    print(0.99)
+elif choice == 'bacon':
+    print(1.10)
+else:
+    print('Bad choice')
 
+                                # Поддержка стандартных значений. Использование метода get
+print('\n\t\t\t\t\t\t\t\t\t\t\t Поддержка стандартных значений использование метода get')
 
+branch = {'spam': 1.25,
+          'ham': 1.99,
+          'eggs': 0.99}
 
+print(branch.get('spam', 'Bad choice'))
+print(branch.get('bacon', 'Bad choice'))
 
+choice = 'bacon'
+if choice in branch:                # Проверка чеелнства in в операторе if
+    print(branch[choice])
+else:
+    print('Bad choice!')
 
+try:                    # Перехват исключений с помощью оператора try
+    print(branch[choice])
+except KeyError:
+    print('Bad choice!')
 
+# Код содержит 3 блока
+x = 1                       # 1. Код верхнего верхнего уровня файла
+if x:
+    y = 2                   # 2. Второй внутри внешнего оператора if
+    if y:
+        print('block2')     # 3. Оператор print под вложенным if
+    print('block1')
+print('block0')
 
+x = 'SPAM'
+if 'rubbery' in 'shrubbery':
+    print(x * 8)            # Выводит 8 раз SPAM
+    x += 'NI'               # Добавляет к x NI = SPAM + NI
+    if x.endswith('NI'):    # Если x заканчивается на NI то умножаем его на 2 и выводим = SPAMNISPAMNI
+        x *= 2
+        print(x)            # Выводит SPAMNISPAMNI
 
+                            #Оператор if/else. Синтакситс
+'''
+if X:
+    A = Y
+else:
+    A = Z
+'''
+# Заменяется на более простой эквивалент верхнего 4 строчного оператора
+# A = Y if X else Z
 
+A = 't' if 'spam' else 'f' # Непустые строки означают истину
+print(A)
+A = 't' if '' else 'f' # Пустые ложь
+print(A)
 
-
-
-
-
-
-
+L = [1, 0, 2, 0, 'spam', '', 'ham', []]
+print(list(filter(bool, L))) # Получение истиных значений
+print([x for x in L if x])  # Включения
+print(any(L), all(L))   # Накопление значений истинности
 
 
 
