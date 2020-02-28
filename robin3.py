@@ -46,3 +46,12 @@ while True:
         print('Bad!' * 8)
 print('Bye')
 
+                                            # Функция поиска
+def find(number, numList):
+    indexMatches = []
+    for index in range(len(numList)):
+        if number == numList[index]:
+            indexMatches.append(index)
+    return indexMatches
+
+print(find(3, [1, 2, 3, 6, 8, 23, 25, 3, 3]))
