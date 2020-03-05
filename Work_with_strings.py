@@ -1525,14 +1525,267 @@ for x in ['spam', 'eggs', 'ham']:
 sum = 0
 prod = 1
 for x in [1, 2, 3, 4]:
-    sum = sum + x
+    sum += x
     prod *= x
     print(sum, prod, sep=', ')
 
 S = 'lumberjack'
 T = ('and', "I'm", 'okay')
 for x in S: print(x, end=' ')   # Итерация по строке
-for x in T: print(x, end=' ')   # Итерация по кортежу
+for x in T: print(x)   # Итерация по кортежу
+
+
+T = [(1, 2), (3, 4), (5, 6)]
+for (a, b) in T:                    # Присваивание кортежей в действии
+    print(a, b)
+
+D = {'a': 1, 'b': 2, 'c':3}
+for key in D:
+    print(key, '=>', D[key])    # Использование итерации по ключам словаря и индексации
+
+print(list(D.items()))
+
+for (key, value) in D.items():
+    print(key, '=>', value)     # итерация сразу по ключам и значениям
+
+print(T)
+for both in T:
+    a, b = both     # Эквивалент в виде присваивания в ручную
+    print(a, b, sep = ', ')
+
+((a, b), c) = ((1, 2), 3)    # Работает также и для вложенных последовательностей
+print(a, b, c, sep = ', ')
+for ((a, b), c) in [((1, 2), 3), ((4, 5), 6)]: print(a, b, c, sep=', ')
+
+for ((a, b), c) in [([1, 2], 3), ['XY', 6]]: print(a, b, c) # Модет быть распакована любая структура с вложенными последовательностями
+
+                                        # Расширенное присвоение последовательностей в Python 3.X
+print('\n\t\t\t\t\t\t\t\t\t\t Расширенное присвоение последовательностей в Python 3.X')
+
+a, b, c = (1, 2, 3)         # Простое присвоение кортежей
+print(a, b, c, sep = ', ', end= '\n\n')
+
+for (a, b, c) in [(1, 2, 3), (4, 5, 6)]:    # Присвоение используется в цикле for
+    print(a, b, c, sep = ', ')
+
+a, *b, c = (1, 2, 3, 4)     # Расширенное присваивание последовательностей
+print(a, b, c)
+for (a, *b, c) in [(1, 2, 3, 4), (5, 6, 7, 8)]:
+    print(a, b, c)
+
+                                        # Вложенные циклы for
+print('\n\t\t\t\t\t\t\t\t\t\t\t Вложенные циклы for')
+
+items = ['aaa', 111, (4, 5), 2.01]  # Набор объектов
+teests = [(4, 5), 3.14]             # Ключи для поиска
+
+for key in teests:                  # Для всех ключей
+    for item in items:              # Для всех элементов
+        if item == key:             # Проверка на совпадение
+            print(key, 'was found') # Ключ найден
+            break
+    else:
+        print(key, 'not found') # Ключ не найден
+
+for key in teests:                  # Для всех ключей
+    if key in items:    # позволить Python проверять на предмет совпадения
+        print(key, 'was found')     # Ключ найден
+    else:
+        print(key, 'not found')     # Ключ не найден
+
+seq1 = 'spam'
+seq2 = 'scam'
+
+res = []                        # Начать с пустого списка
+for x in seq1:                  # Просмотр первой последовательности
+    if x in seq2:               # Общий элемент?
+        res.append(x)           # Добавить в конец результирующего списка
+print(res)
+
+print([x for x in seq1 if x in seq2])  # Позволить Python собрать результат
+
+                                # Циклы с подсчетом: range
+print('\n\t\t\t\t\t\t\t\t\t Циклы с подсчетом: range')
+
+print(list(range(5)), list(range(2, 5)), list(range(0, 10, 2))) # пример выозова фун-ции range(итерируемый объект)
+
+print(list(range(-5, 5)))       # Генерирует список с отрицательными значениями
+print(list(range(5, -5, -1)))   # Генерирует список на убывание
+
+for i in range(3):          # range генерируется соответствующее количество целых чисел
+    print(i, 'Python')
+
+                                        # Просмотр последовательностей: while И range ИЛИ for
+print('\n\t\t\t\t\t\t\t\t\t\t Просмотр последовательностей: while И range ИЛИ for')
+
+X = 'spam'
+for item in X: print(item, end=' ') # Простая итерация
+
+i = 0
+while i < len(X):                   # Итерация в цикле while
+    print(X[i], end=' ')
+    i += 1
+
+for i in range(len(X)): print(X[i], end = ' ')  # Ручная итерация по средствам range/len
+
+                                        # Тасование последовательностей: range и len
+print('\n\t\t\t\t\t\t\t\t\t\t # Тасование последовательностей: range и len')
+S = 'spam'
+for i in range(len(S)): # Для счетчиков повторений 0..3
+    S = S[1:] + S[:1]   # Переместить начальный элемент в конец
+    print(S, end=' ')
+
+for i in range(len(S)):   # для позиций 0..3
+    X = S[i:] + S[:i]       # Задняя часть + передняя часть
+    print(X, end = ' ')
+
+L = [1, 2, 3]
+for i in range(len(L)):
+    X = L[i:] + L[:i]       # Работает на последовательности любого типа
+    print(X)
+
+                            # Неполный обход: range ИЛИ срезы
+
+print('\n\t\t\t\t\t\t\t\t Неполный обход: range ИЛИ срезы')
+S = 'abcdefghijk'
+print(list(range(0, len(S), 2)))        # Выводит индексы с 0 до длины строки, с шагом 2
+
+for i in range(0, len(S), 2): print(S[i], end = ' ')    # Выводит значения списка согласно индексам, с шагом 2
+
+S =  'abcdefghijk'
+for c in S[::2]: print(c, end = ' ')    # Более простой и правильный способ нарезания(использовать его)
+
+                                    # Изменение списков: range ИЛИ Включения
+print('\n\t\t\t\t\t\t\t\t\t\t Изменение списков: range ИЛИ Включения')
+
+L = [1, 2, 3, 4, 5]
+
+for x in L:     # Изменение x, но не L
+    x += 1
+print(x)
+
+
+L = [1, 2, 3, 4, 5]
+
+for i in range(len(L)):     # Добавить 1 к каждому элементу L
+    L[i] += 1
+print(L)
+
+i = 0
+while i < len(L):           # Так же добавляет 1 к каждому элементу L, только используется цикл while
+    L[i] += 1
+    i += 1
+print(L)
+
+                                    # Параллельные обходы: функция zip
+print('\n\t\t\t\t\t\t\t\t Параллельные обходы: функция zip')
+
+L1 = [1, 2, 3, 4]
+L2 = [5, 6, 7, 8]
+
+print(list(zip(L1, L2)))
+
+for (x, y) in zip(L1, L2):          # С циклом for zip поддерживает параллельные итерации
+    print(x, y, '--', x + y)
+
+T1, T2, T3 = (1, 2, 3), (4, 5, 6), (7, 8, 9)
+print(list(zip(T1, T2, T3)))                        # Три кортежа для трех элементов
+
+S1 = 'abc'
+S2 = 'xyz123'
+print(list(zip(S1, S2)))                # Усекает по длине более короткой строки
+
+                                        # Создание словарей с помощью zip
+print('\n\t\t\t\t\t\t\t\t\t\t\t Создание словарей с помощью zip')
+#---------------------------------------------------------------------------------
+D1 = {'spam': 1, 'eggs': 3, 'toast': 5}
+print(D1)
+#---------------------------------------------------------------------------------
+D1 = {}
+D1['spam'] = 1
+D1['eggs'] = 3
+D1['toast'] = 5
+print(D1)
+#---------------------------------------------------------------------------------
+keys = ['spam', 'eggs', 'toast']
+vals = [1, 3, 5]
+print(list(zip(keys, vals)))
+#---------------------------------------------------------------------------------
+D2 = {}
+for (k, v) in zip(keys, vals): D2[k] = v
+print(D2)
+#---------------------------------------------------------------------------------
+D3 = dict(zip(keys, vals))
+print(D3)
+#---------------------------------------------------------------------------------
+print({k: v for (k, v) in zip(keys, vals)}) # Создание словаря
+
+                                        # Генерация смещений и элементов: enumerate
+print('\n\t\t\t\t\t\t\t\t\t Генерация смещений и элементов: enumerate')
+
+S = 'spam'
+offset = 0
+for item in S:
+    print(item, 'appears at offset', offset)        # Вывод элемента и смещения
+    offset += 1
+
+S = 'spam'
+for (offset, item) in enumerate(S):
+    print(item, 'appears at offset', offset)
+
+E = enumerate(S)
+print(next(E), next(E), next(E), next(E))
+
+print([c * i for (i, c) in enumerate(S)])
+
+import os
+F = os.popen('dir')         # чтение строки за строкой
+print(F.readline())
+
+F = os.popen('dir')         # чтение блоками заданного размера
+print(F.read(50))
+
+print(os.popen('dir').readlines()[0])   # Чтение всех строк: индексация
+print(os.popen('dir').read()[:50])     # Чтение всего сразу: срез
+
+for line in os.popen('dir'):            # Цикл с файловым итератором строк
+    print(line.rstrip())
+
+#for line in os.popen('systeminfo'): print(line.rstrip())   # Вывод команды оболочки в консольном окне (Linux)
+
+                        # Форматирование, ограниченное отображение
+'''for (i, line) in enumerate(os.popen('systeminfo')):     # Вывод команды оболочки в консольном окне (Windows)
+    if i == 4: break
+    print('%05d) %s' % (i, line.rstrip()))
+'''
+
+                        # Разбор для специфических строк, нейтральный к регистру символов
+'''for line in os.popen('systeminfo'):
+    parts = line.split(':')
+    if parts and parts[0].lower() == 'system type':
+        print(parts[1].strip())
+'''
+
+                            # Чтение страниц сайтов начало!!!!
+'''from urllib.request import urlopen
+for line in urlopen('http://learning-python.com/books'):
+    print(line)
+'''
+
+                                                # Глава 14
+                                        # Итерации и включения
+print('\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t Глава 14'
+      '\n\t\t\t\t\t\t\t\t\t\t\t\t Итерации и включения')
+
+
+
+
+
+
+
+
+
+
 
 
 
