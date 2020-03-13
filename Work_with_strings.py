@@ -263,7 +263,7 @@ print(open('unidata.txt').read())  # Так же низкоуровневые/д
 print('\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Прочие основные типы')
 # Множества вызываются с помощью встроенной функции set
 X = set('spam')  # Создать множество из последовательности
-Y = {'h', 'a', 'm'}  # Создать мнодество с помощью литералов множеств
+Y = {'h', 'a', 'm'}  # Создать множество с помощью литералов множеств
 print(X, Y)  # Кортеж из двух множеств без круглых скобок
 print(X & Y)  # Пересечение
 print(X | Y)  # Объединение
@@ -1857,6 +1857,360 @@ print(list(enumerate('spam')))      # использование вызова li
 
                                     # Списковые включения: первый подробный взгляд
 print('\n\t\t\t\t\t\t\t\t Списковые включения: первый подробный взгляд')
+
+L = [1, 2, 3, 4, 5]
+for i in range(len(L)):             # Стандартный цикл дял изменения списка (устаревший)
+    L[i] += 10
+print(L)
+
+L = [x + 10 for x in L]             # Выражение(списковое включение) которое производит желаемый результирующий список (новый вариант)
+print(L)
+
+res = []
+for x in L:                         # Внутренний процесс спиского включения
+    res.append(x + 10)
+print(res)
+
+                                    # Использование списковых включений с файлами.
+print('\n\t\t\t\t\t\t\t\t\t\t Использование списковых включений с файлами.')
+
+
+f = open('script2.py')
+lines = f.readlines()           # Загружает весь файл целиком в память
+print(lines)                    # Выводит результат не форматированный(присутствуют элементы конца строки \n)
+
+lines = [line.rstrip() for line in lines]       # Так работает метод очистики вывода, убираем разделитель конца строки (\n)
+print(lines)
+
+lines = [line.rstrip() for line in open('script2.py')]
+print(lines)
+
+# Примеры итератора файлового объекта, преобразующие стркоу
+print('\n\t\t\t\t\t\t\t\t\t Примеры итератора файлового объекта, преобразующие стркоу')
+
+print([line.upper() for line in open('script2.py')])    # Преобразует строку к верхнему регистру
+print([line.rstrip().upper() for line in open('script2.py')])       # Строковые методы возращают новую строку, к которой можно применять другой строковый метод.
+print([line.split() for line in open('script2.py')])      # Вставляет разделитель между пробелами
+print([line.replace(' ', '!') for line in open('script2.py')])  # Заменяет пробел на ! знак
+print([('sys' in line, line[:5]) for line in open('script2.py')])   # Накапливание множества результатов, пока они помещены в коллекцию вроде кортежа или списка
+
+                                            # Расширенный синтаксис списковых включений
+print('\n\t\t\t\t\t\t\t\t Расширенный синтаксис списковых включений')
+
+lines = [line.rstrip() for line in open('script2.py') if line[0] == 'p']    # Проверка на значение(если первый символ p, тогда выводим)
+print(lines)
+
+res = []
+for line in open('script2.py'):         # Тоже что и выражение сверху, только в формате простого, эквивалентного цикла for
+    if line[0] == 'p':
+        res.append(line.rstrip())
+print(res)
+
+print([line.rstrip() for line in open('script2.py') if line.rstrip()[-1:].isdigit()])   # Выбирает только те строки, которые оканчиваются цифрой
+
+                                    # Пример кода не вхлдящий в состав книги (опечатки найденные корректором в черновом варианте настоящей книги)
+#fname = r'd:\books\5e\1p5e\draft1types.txt'
+#print(len(open(fname).readlines()))             # Подсчитывает общее кол-во строк в текстовом файле
+#print(len([line for line in open(fname) if line.strip() != '']))   # Непустые строки
+
+                                    # Вложенные циклы: for
+print('\n\t\t\t\t\t\t\t\t\t Вложенные циклы: for')
+
+print([x + y for x in 'abc' for y in 'lmn'])    # Конкатенация x и y лежащих в разных строках
+
+res = []
+for x in 'abc':                     # Наглядный показ верхнего примера(конкатенации) на примере цикла for
+    for y in 'lmn':
+        res.append(x + y)
+print(res)
+
+                                    # Дргуие итерационные контексты
+print('\n\t\t\t\t\t\t\t\t\t\t Другие итерационные контексты')
+
+for line in open('script2.py'):         # Использование итератора файлового объекта
+    print(line.upper(), end='')
+
+uppers = [line.upper() for line in open('script2.py')]
+print(uppers)
+
+print(map(str.upper, open('script2.py')))   # В Python 3.X функция map возвращает итерируемый объект
+print(list(map(str.upper, open('script2.py'))))
+
+#------------------------------------------------------------------------------------------
+                                    # Встроенные функции
+print('\n\t\t\t\t\t\t\t\t\t\t Встроенные функции')
+
+print(sorted(open('script2.py')))       # sorted - Сортировка элементов в итерируемом объекте
+print(list(zip(open('script2.py'), open('script2.py'))))    # zip - Склеиваем(объединяем) два объекта
+print(list(enumerate(open('script2.py'))))  # enumerate - Формирует пары из элементов в итерируемом объекте и их относительных позиций
+print(list(filter(bool, open('script2.py'))))   # filter - выбирает элементы из итерируемого объекта, для которого заданная функция дает истенное значение
+
+import functools, operator
+print(functools.reduce(operator.add, open('script2.py')))
+#------------------------------------------------------------------------------------------
+
+
+a, b, c, d = open('script2.py')         # Присваивание последовательностей
+print(a, d)
+
+a, *b = open('script2.py')              # Расширенная форма
+print(a, b)
+
+print('y = 2\n' in open('script2.py'))    # Проврека челенства
+print('x = 2\n' in open('script2.py'))    # Проверка челенства
+
+L = [11, 22, 33, 44]                    # Присваивание срезов
+L[1:3] = open('script2.py')
+print(L)
+
+L = [11]
+L.extend(open('script2.py'))            # Метод list.extend
+print(L)
+
+L = [11]
+L.append(open('script2.py'))    # Метод list.append не выполняет итерацию
+print(L)        # Не работает без list, с указанием позиции итерируемого объекта в нашем случае L[1]
+print(list(L[1]))       # Выводит итерируем объект
+
+print(set(open('script2.py')))  # Вызов set поддерживает итерацию
+print(line for line in open('script2.py'))  # Выражение включения поддерживает итерацию
+print({ix: line for ix, line in enumerate(open('script2.py'))})     # Словари так же поддерживают итерацию
+
+                                    # Расширенные свойства для выражения включения и словарей
+print('\n\t\t\t\t\t\t\t\t\t Расширенные свойства для выражения включения и словарей')
+
+print({line for line in open('script2.py') if line[0] == 'p'})
+print({ix: line for (ix, line) in enumerate(open('script2.py')) if line[0] == 'p'})
+
+print(list(line.upper() for line in open('script2.py')))        # См. главу 20 этой книги
+
+#print(sum([3, 2, 4, 1, 5, 0]))      # sum - ожидает только числа
+print(any(['spam', '', 'ni']))      # any - Возвращает True, если хотя бы один элемент истина
+print(all(['spam', '', 'ni']))      # all - Возвращает True, если все элементы истина
+print(max([3, 2, 5, 1, 4]))         # max - Возвращает максимальный элемент в итерируемом объекте
+print(min([3, 2, 5, 1, 4]))         # min - Возвращает наименьший элемент в итерируемом объекте
+
+print(max(open('script2.py')))      # Строка с максимальным/минимальным строковым значением
+print(min(open('script2.py')))
+
+def f(a, b, c, d): print(a, b, c, d, sep='&')
+
+print(f(*[1, 2, 3, 4]))     # Распаковывает в аргументы
+print(f(*open('script2.py')))
+
+X, Y = (1, 2), (3, 4)
+print(list(zip(X, Y)))      # Сжатие кортежей: возвращает итерируемый объект
+A, B = zip(*zip(X, Y))      # Развертывание сжатых кортежей!
+print(A)
+print(B)
+
+                                            # Итерируемый объект range
+print('\n\t\t\t\t\t\t\t\t\t\t Итерируемый объект range')
+
+R = range(10)       # range - возвращает итерируемый объект, а не список
+print(R)
+
+I = iter(R)         # Создание итератора из итерируемого объекта range
+print(next(I))      # Продвижение на следующий результат
+print(next(I))      # Что происходит в циклах for, включения и т.д.
+print(list(R))      # Принудительное преобразование в список, если необходимо
+print(len(R))       # range также поддерживает функцию len и индексацию, но ничего другого
+print(R[0])
+print(R[-1])
+print(next(I))
+print(I.__next__()) # .next() становиться .__next__(), но использует новый метод next()
+
+                                        # Итерируемые объекты map, zip и filter
+print('\n\t\t\t\t\t\t\t\t\t\t\t Итерируемые объекты map, zip и filter')
+
+M = map(abs, (-1, 0, 1))        # map - возвращает итерируемый объект, а не список
+print(M)
+print(next(M))      # Использование итератора в ручную: результаты израсходуются
+                    # len() или индексация не поддерживаются
+print(next(M))
+print(next(M))
+#print(next(M))     # Ошибка StopIteration
+
+for x in M: print(x)    # Итератор map теперь пуст: только один проход
+
+M = map(abs, (-1, 0, 1))    # Создать новый итерируемый объект/итератор для повторного просмотра
+for x in M: print(x)        # Итерационные контексты автоматически вызывают next()
+
+print(list(map(abs, (-1, 0, 1))))   # при необходимости можно принудительно преобразовать в список
+
+Z = zip((1, 2, 3), (10, 20, 30))        # zip - тоже итератор с одним проходом
+print(Z)
+list(Z)
+
+for pair in Z: print(pair)  # После одного прохода результаты израсходованы
+
+Z = zip((1, 2, 3), (10, 20, 30))
+for pair in Z: print(pair)       # итератор используется автоматически или вручную
+
+Z = zip((1, 2, 3), (10, 20, 30))    # ручная итерация (iter() не требуется)
+print(next(Z))
+print(next(Z))
+
+print(filter(bool, ['spam', '', 'ni']))             # filter - возвращает элементы в итерируемом объекте,
+print(list(filter(bool, ['spam', '', 'ni'])))       # для которых переданная функция дает True (без list не покажет)
+
+print([x for x in ['spam', '', 'ni'] if bool(x)])   # Аналог filter (списковые включения)
+print([x for x in ['spam', '', 'ni'] if x])         # --//--
+
+                                                # Итераторы с множеством проходов или с одним проходом
+print('\n\t\t\t\t\t\t\t Итераторы с множеством проходов или с одним проходом')
+
+R = range(3)        # range - допускает множество итераторов
+#print(next(R))
+
+I1 = iter(R)
+print(next(I1))
+print(next(I1))
+I2 = iter(R)            # Два итератора на одном диапазоне
+print(next(I2))
+print(next(I1))         # I1 - находится не в том же месте, что и I2
+print(next(I2))
+
+Z = zip((1, 2, 3), (10, 20, 30))
+I1 = iter(Z)
+I2 = iter(Z)            # Два итератора на одном результате zip
+print(next(I1))
+print(next(I1))
+print(next(I2))         # (Python 3.X) I2 находится не в том же месте, что и I1!
+
+M = map(abs, (-1, 0, 1))    # Тоже самое для результата map (и filter)
+I1 = iter(M); I2 = iter(M)
+print(next(I1), next(I1), next(I1))
+# print(next(I2))           # Ошибка StopIteration - Одиночный проход исчерпал элементы
+
+R = range(3)            # Но результат range допускает множество итераторов
+I1, I2 = iter(R), iter(R)
+print(next(I1), next(I1), next(I1))
+print(next(I2))         # Множество активных проходов подоно спискам Python 2.X
+
+                                    # итерируемые словарные представления
+print('\n\t\t\t\t\t\t\t\t Итерируемые словарные представления')
+
+D = dict(a=1, b=2, c=3)
+print(D)
+K = D.keys()        # объект представления в Python 3.X, не список
+print(K)
+#print(next(K))     # Ошибка typeError - Представления сами по себе не являются итераторами
+I = iter(K)                 # Итерируемы объекты представлений имеют итератор,
+print(next(I))              # который может использоваться в ручную
+print(next(I))              # но не поддерживает len() и индексацию
+
+for k in D.keys(): print(k, end=' ')    # Все итерационные контексты применяют итераторы автоматически
+
+K = D.keys()
+print(list(K))         # По-прежнему можно при неободимости создавать реальный список
+V = D.values()         # То же самое касется представлений values() и items()
+print(V)
+print(list(V))         # Для отображения либо индексации как списка нгеобходим вызов List()
+#print(V[0])           # Ошибка TypeError - для словаря не возмрожна индексация
+print(list(V)[0])
+print(list(D.items()))
+
+for (k, v) in D.items(): print(k, v, end=' ')
+
+print(D)                # Словари все еще производят итератор
+I = iter(D)             # На каждой итреации возвращается один ключ
+print(next(I))
+print(next(I))
+
+for key in D: print(key)    # по прежнему нет необходимости вызывать keys() для итерации. Но keys() также является итерируемым объектом в Python 3.x
+
+print(D)
+for k in sorted(D.keys()): print(k, D[k])
+for k in sorted(D): print(k, D[k])  # рекомендуемая сортировка ключей
+
+                                        # Глава 15. Документация
+print('\n\t\t\t\t\t\t\t\t\t\t\t Глава 15. Документация')
+                                        # Функция dir
+print('\n\t\t\t\t\t\t\t\t\t\t\t\t Функция dir')
+
+import sys
+print(dir(sys))
+print(len(dir(sys)))            # Количество имен в sys
+print(len([x for x in dir(sys) if not x.startswith('__')])) # только имена без __ в своем начале
+print(len([x for x in dir(sys) if not x[0] == '_']))        # Имена без ведущего подчеркивания
+print(dir([]))      # просмотр атрибутов списка
+print(dir(''))      # просмотр атрибутов строки
+
+print([a for a in dir(list) if not a.startswith('__')])   # Имена атрибутов в списках
+print([a for a in dir(dict) if not a.startswith('__')])   # Имена атрибутов в словарях
+
+def dir1(x):
+    return [a for a in dir(x) if not a.startswith('__')]
+print(dir1(tuple))
+
+                                        # Строки документации: __doc__
+print('\n\t\t\t\t\t\t\t\t\t Строки документации: __ doc__')
+
+import docstrings
+print(docstrings.__doc__)
+print(docstrings.square.__doc__)
+print(docstrings.Employee.__doc__)
+
+import sys
+print(sys.__doc__)
+print(sys.getrefcount.__doc__)
+print(int.__doc__)
+                                        # PyDoc: функция help
+print('\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t PyDoc: функция help')
+import sys
+help(sys.getrefcount)
+help(sys)
+help(dict)
+
+import docstrings
+help(docstrings.square)
+
+L = [1, 2]
+L.append(L)
+print(L)
+
+                                                # Упражнения к Части III настоящей книги
+print('\n\t\t\t\t\t\t\t\t\t\t\t Упражнения к части III настоящей книги')
+
+#1. Упражнение с базовыми циклами
+#----------------------------1.1---------------------------------------------
+S = 'spam'
+for c in S:
+    print(ord(c))
+#----------------------------1.2---------------------------------------------
+x = 0
+for c in S:
+    x += ord(c)
+print(x)
+#----------------------------1.3-----------------------------------------
+x = []
+for c in S:
+    x.append(ord(c))
+print(x)
+
+print(list(map(ord, S)))
+print([ord(c) for c in S])
+
+#2 Упражнение - символ обратной косой черты(\a - символ звукового сигнала)
+for i in range(50):
+    print('hello %d\n\a' % i)
+
+#3 Упражнение - сортировка словарей.
+D = dict(a=1, b=2, c=3, d=4, e=5, f=6, g=7)
+print(D)
+keys = list(D.keys())
+keys.sort()
+for key in keys:
+    print(key, '=>', D[key])
+
+for key in sorted(D):                   # Лучше в более поздних выпусках Python
+    print(key, '=>', D[key])
+
+                                        # стр 489
+
+
+
 
 
 
