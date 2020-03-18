@@ -2207,7 +2207,78 @@ for key in keys:
 for key in sorted(D):                   # Лучше в более поздних выпусках Python
     print(key, '=>', D[key])
 
-                                        # стр 489
+#4 Упражнение - Альтернативные варианты рпограммной логики.
+L = [1, 2, 4, 8, 16, 32, 64]
+X = 5
+found = False
+i = 0
+while not found and i < len(L):
+    if 2 ** X == L[i]:
+        found = True
+    else:
+        i += 1
+if found:
+    print('at index', i)
+else:
+    print(X, 'not found')
+
+#----------------------- a -------------------------------
+L = [1, 2, 4, 8, 16, 32, 64]
+X = 5
+i = 0
+while i < len(L):
+    if 2 ** X == L[i]:
+        print('at index', i)
+        break
+    i += 1
+else:
+    print(X, 'not found')
+
+#-------------------- б ---------------------------------
+L = [1, 2, 4, 8, 16, 32, 64]
+X = 5
+for p in L:
+    if (2 ** X) == p:
+        print((2 ** X), 'was found at', L.index(p))
+        break
+else:
+    print(X, 'not found')
+
+#------------------- в ----------------------------------
+L = [1, 2, 4, 8, 16, 32, 64]
+X = 5
+if (2 ** X) in L:
+    print((2 ** X), 'was found at', L.index(2 ** X))
+else:
+    print(X, 'not found')
+
+#------------------ г -----------------------------------
+X = 5
+L = []
+for i in range(7):
+    L.append(2 ** i)
+#    print(L)
+if (2 ** X) in L:
+    print((2 ** X), 'was found at', L.index(2 ** X))
+else:
+    print(X, 'not found')
+
+#--------------- е --------------------------------------
+X = 5
+L = [2 ** x for x in range(7)]
+print(L)
+if (2 ** X) in L:
+    print((2 ** X), 'was found at', L.index(2 ** X))
+
+                                        # Часть IV
+                                # ФУНКЦИИ И ГЕНЕРАТОРЫ
+print('\n\t\t\t\t\t\t\t\t\t\t\t\t Часть IV'
+      '\n\t\t\t\t\t\t\t\t\t\t\t ФУНКЦИИ И ГЕНЕРАТОРЫ')
+                                    # Основы функций
+print('\n\t\t\t\t\t\t\t\t\t\t\t\t ОСНОВЫ ФУНКЦИЙ')
+
+
+
 
 
 
