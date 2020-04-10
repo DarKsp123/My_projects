@@ -1427,7 +1427,7 @@ except KeyError:
     print('Bad choice!')
 
 # Код содержит 3 блока
-x = 1                       # 1. Код верхнего верхнего уровня файла
+x = 1                       # 1. Код верхнего уровня файла
 if x:
     y = 2                   # 2. Второй внутри внешнего оператора if
     if y:
@@ -1459,7 +1459,7 @@ A = 't' if '' else 'f' # Пустые ложь
 print(A)
 
 L = [1, 0, 2, 0, 'spam', '', 'ham', []]
-print(list(filter(bool, L))) # Получение истиных значений
+print(list(filter(bool, L))) # Получение истиных значений. используется функция filter
 print([x for x in L if x])  # Включения
 print(any(L), all(L))   # Накопление значений истинности
 
@@ -2277,8 +2277,10 @@ print('\n\t\t\t\t\t\t\t\t\t\t\t\t Часть IV'
                                     # Основы функций
 print('\n\t\t\t\t\t\t\t\t\t\t\t\t ОСНОВЫ ФУНКЦИЙ')
 
-
-
+# myfunc('spam', 'eggs', meat=ham, *rest) -  выражение вызова
+def printer(message):
+    print('Hello '+ message)        # Пример создания и вызова функции
+printer('Kirill')
 
 
 
