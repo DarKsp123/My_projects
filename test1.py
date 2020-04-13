@@ -67,7 +67,7 @@ for i in L:
     #    c += i.title().split(',')
     #print(c)
 #print('Bye')
-    print(c)
+print(c)
 
 
 

@@ -1,4 +1,5 @@
 import docx     # Модуль работы с документами Word
+import re
 
 my_text = docx.Document('C:\Training\ПЗ 0503760 071.docx')              # Загружаем документ
 my_text_1 = docx.Document('C:\Training\kest.docx')
@@ -9,15 +10,14 @@ paragraph_size_1 = len(my_text_1.paragraphs)
 print(paragraph_size, paragraph_size_1)
 
 
-
-for i in range(paragraph_size):
-    paragraph = []
-    for paragraph in my_text.paragraphs[i]:
-        paragraph.append(paragraph.text)
-    print('\n'.join(paragraph))
-
-paragraph = my_text.paragraphs[1].text
-print(paragraph)
+paragraphs = []
+for paragraph in my_text.paragraphs:
+    paragraphs.append(paragraph.text)
+pattern = re.compile(r'Раздел.*')
+#pattern = re.match(r'Раздел.*', paragraphs)
+match = list(filter(pattern.match, paragraphs))
+    #print('\n'.join(paragraphs))
+print('\n'.join(match))
 
 '''
 # Работа непосредственно с текстом 
