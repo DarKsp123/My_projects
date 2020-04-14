@@ -2270,7 +2270,7 @@ print(L)
 if (2 ** X) in L:
     print((2 ** X), 'was found at', L.index(2 ** X))
 
-                                        # Часть IV
+                                        # Часть IV (стр. 492)
                                 # ФУНКЦИИ И ГЕНЕРАТОРЫ
 print('\n\t\t\t\t\t\t\t\t\t\t\t\t Часть IV'
       '\n\t\t\t\t\t\t\t\t\t\t\t ФУНКЦИИ И ГЕНЕРАТОРЫ')
