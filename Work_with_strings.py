@@ -2284,8 +2284,3 @@ printer('Kirill')
 
 
 
-
-
-
-
-
