@@ -82,7 +82,7 @@ def number_length(a: int) -> int:
         return 1
     while a > 0:
         count += 1
-        a = a // 10
+        a = a // 10 # опретор целочисленного деления, используется для отбрасывания чисел с конца
     return count
 
 if __name__ == '__main__':
