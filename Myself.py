@@ -1,10 +1,11 @@
 # TODO Задча 1. Написать функци вычисляющую сумму всех чисел находящихся в строке.
-def sum_numbers(text:str) -> int:
+def sum_numbers(text: str) -> int:
     total = 0
-    for value in text.split():
-        if value.isdigit():
-            total += int(value)
+    for line in text.split():
+        if line.isdigit():
+            total += int(line)
     return total
+
 
 if __name__ == '__main__':
     print('Example:')
@@ -27,14 +28,15 @@ print("Coding complete? Click 'Check' to earn cool rewards!")
 #-------------------------------------------------------------------------------------------------
 
 # TODO Задача 2. Сложить только четные элементы последовательности и умножить их на поледний элемент последовательности.
-def checkio(arry: list) -> int:
-    result = 0
-    if len(arry) > 0:
-        for i in range(0, len(arry), 2):
-            result += arry[i]
-        return result * arry[-1]
+def checkio(array: list) -> int:
+    count = 0
+    if len(array) > 0:
+        for i in range(0, len(array), 2):
+            count += array[i]
+        return count * array[-1]
     else:
         return 0
+
 
 
 # These "asserts" using only for self-checking and not necessary for auto-testing
@@ -77,13 +79,8 @@ if __name__ == '__main__':
 
 #TODO Задча 4. Подсчитать кол-во цифр в числе.
 def number_length(a: int) -> int:
-    count = 0
-    if a == 0:
-        return 1
-    while a > 0:
-        count += 1
-        a = a // 10 # опретор целочисленного деления, используется для отбрасывания чисел с конца
-    return count
+    
+
 
 if __name__ == '__main__':
     print('Example')

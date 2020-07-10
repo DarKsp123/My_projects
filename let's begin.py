@@ -75,3 +75,26 @@ if __name__ == '__main__':
     assert checkio("bla bla bla bla") == True, "Bla Bla"
     assert checkio("Hi") == False, "Hi"
     print("Coding complete? Click 'Check' to review your tests and earn cool rewards!")
+#------------------------------------------------------------------------------------------------------
+
+#TODO Задча 4. Подсчитать кол-во цифр в числе.
+def number_length(a: int) -> int:
+    count = 0
+    if a == 0:
+        return 1
+    while a > 0:
+        count += 1
+        a = a // 10 # Опретор целочисленного деления, используется для отбрасывания чисел с конца
+    return count
+
+if __name__ == '__main__':
+    print('Example')
+    print(number_length(10))
+
+    # These "asserts" are used for self-checking and not for an auto-testing
+    assert number_length(10) == 2
+    assert number_length(0) == 1
+    assert number_length(4) == 1
+    assert number_length(44) == 2
+    print("Coding complete? Click 'Check' to earn cool rewards!")
+#--------------------------------------------------------------------------------------------------------
