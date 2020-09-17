@@ -29,7 +29,7 @@ import itertools as it
 mass = [200000.59, 155000.00, 55600.00, 45400, 399.41]
 a = 200400.00
 for i in range(1, len(mass) + 1):
-    comb = it.combinations(mass, 2) # it.permutations - учитывает и обратные перестапновки.
+    comb = it.combinations(mass, 2) # it.permutations - учитывает и обратные перестановки.
     result = [i for i in comb if sum(i) == a]
     print(result)
 
