@@ -1,11 +1,26 @@
 # TODO 1-ое дополнительное задание. Найти наибольшее и наименьшее значение в списке(в кортеже).
-my_num = (125, 2, 3, 44, 59, 666, 117, 8, 9, 66)
-if len(my_num) > 0:
-    value = my_num[0]
-    for i in range(0, len(my_num)):
-        if my_num[i] > value:
-            value = my_num[i]
-    print(value)
+def max_value(elements) -> int:
+    if len(elements) > 0:
+        null_tuple = elements[0]
+        for elem in elements:
+            if elem > null_tuple:   # Для нахождения наименьшего значения нужно поменять знак с '>' на '<'
+                null_tuple = elem
+        return null_tuple
+    else:
+        return 0
+
+
+if __name__ == '__main__':
+    print('Example')
+    print(max_value([1, 2, 3, 44, 56, 9, 10, 13, 23, 11, 38]))
+
+
+assert max_value([1, 2, 3, 44, 56, 9, 10, 13, 23, 11, 38]) == 56
+assert max_value((1, 2, 3, 44, 56, 9, 10, 13, 23, 11, 38)) == 56
+assert max_value('') == 0
+assert max_value(()) == 0
+assert max_value([]) == 0
+
 
 #-----------------------------------------------------------------------------------------------
 
@@ -297,6 +312,32 @@ if __name__ == '__main__':
     assert list(replace_first([1, 2, 3, 4])) == [2, 3, 4, 1]
     assert list(replace_first([1])) == [1]
     assert list(replace_first([])) == []
+    print("Coding complete? Click 'Check' to earn cool rewards!")
+
+#--------------------------------------------------------------------------------------------------------
+
+# TODO Задача 10. Найти наиболдьшую цифру в числе.
+def max_digit(number: int) -> int:
+    max_number = 0
+    if number == 0:
+        return 0
+    while number > 0:
+        if number % 10 > max_number:
+            max_number = number % 10
+        number //= 10
+    return max_number
+
+
+if __name__ == '__main__':
+    print("Example:")
+    print(max_digit(634))
+
+    # These "asserts" are used for self-checking and not for an auto-testing
+    assert max_digit(0) == 0
+    assert max_digit(52) == 5
+    assert max_digit(634) == 6
+    assert max_digit(1) == 1
+    assert max_digit(10000) == 1
     print("Coding complete? Click 'Check' to earn cool rewards!")
 
 #--------------------------------------------------------------------------------------------------------

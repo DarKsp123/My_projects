@@ -1,5 +1,17 @@
 # TODO 1-ое дополнительное задание. Найти наибольшее и наименьшее значение в списке(в кортеже).
 
+
+if __name__ == '__main__':
+    print('Example')
+    print(max_value([1, 2, 3, 44, 56, 9, 10, 13, 23, 11, 38]))
+
+
+assert max_value([1, 2, 3, 44, 56, 9, 10, 13, 23, 11, 38]) == 56
+assert max_value((1, 2, 3, 44, 56, 9, 10, 13, 23, 11, 38)) == 56
+assert max_value('') == 0
+assert max_value(()) == 0
+assert max_value([]) == 0
+
 #--------------------------------------------------------------------------------------------------
 
 # TODO Задча 1. Написать функци вычисляющую сумму всех чисел находящихся в строке.
@@ -167,6 +179,8 @@ if __name__ == '__main__':
     assert list(remove_all_before([7, 7, 7, 7, 7, 7, 7, 7, 7], 7)) == [7, 7, 7, 7, 7, 7, 7, 7, 7]
     print("Coding complete? Click 'Check' to earn cool rewards!")
 
+#-----------------------------------------------------------------------------------------------------
+
 
 #TODO Задача 7.2. Удалить из списка все элементы найденные до первого вхождения заданного числа(Используем блок вызова исключений try).
 from typing import Iterable
@@ -222,6 +236,45 @@ if __name__ == '__main__':
     assert list(replace_first([1, 2, 3, 4])) == [2, 3, 4, 1]
     assert list(replace_first([1])) == [1]
     assert list(replace_first([])) == []
+    print("Coding complete? Click 'Check' to earn cool rewards!")
+
+#--------------------------------------------------------------------------------------------------------
+
+# TODO Задача 10. Найти наиболдьшую цифру в числе.
+
+
+
+if __name__ == '__main__':
+    print("Example:")
+    print(max_digit(634))
+
+    # These "asserts" are used for self-checking and not for an auto-testing
+    assert max_digit(0) == 0
+    assert max_digit(52) == 5
+    assert max_digit(634) == 6
+    assert max_digit(1) == 1
+    assert max_digit(10000) == 1
+    print("Coding complete? Click 'Check' to earn cool rewards!")
+
+#--------------------------------------------------------------------------------------------------------
+
+# TODO Задача 11. Разделить строку на пары символов. Если строка состоит из нечетного количества символов,
+#  то недостающий символ в результирующем списке пар заменяется на знак нижнего подчеркивания '_' .
+def split_pairs(a):
+    # your code here
+    return None
+
+
+if __name__ == '__main__':
+    print("Example:")
+    print(list(split_pairs('abcd')))
+
+    # These "asserts" are used for self-checking and not for an auto-testing
+    assert list(split_pairs('abcd')) == ['ab', 'cd']
+    assert list(split_pairs('abc')) == ['ab', 'c_']
+    assert list(split_pairs('abcdf')) == ['ab', 'cd', 'f_']
+    assert list(split_pairs('a')) == ['a_']
+    assert list(split_pairs('')) == []
     print("Coding complete? Click 'Check' to earn cool rewards!")
 
 #--------------------------------------------------------------------------------------------------------
