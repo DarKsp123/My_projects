@@ -191,7 +191,6 @@ if __name__ == '__main__':
 #TODO Задача 7. Удалить из списка все элементы найденные до первого вхождения заданного числа(Используем условие проверки нахождения числа в списке).
 from typing import Iterable
 
-
 def remove_all_before(items: list, border: int) -> Iterable:
     if border in items:
         index = items.index(border)
@@ -270,12 +269,9 @@ if __name__ == '__main__':
 
 #TODO Задача 8. Проверить все символы на вхождение в верхний регистр.
 def is_all_upper(text: str) -> bool:
-    if text.isupper() or text.strip() == '':
+    if text.isupper() or text.strip() == '' or text.isdigit():
         return True
-    elif text.isdigit():
-        return True
-    else:
-        return False
+    return False
 
 
 if __name__ == '__main__':
@@ -342,3 +338,113 @@ if __name__ == '__main__':
 
 #--------------------------------------------------------------------------------------------------------
 
+# TODO Задача 11. Разделить строку на пары символов. Если строка состоит из нечетного количества символов,
+#  то недостающий символ в результирующем списке пар заменяется на знак нижнего подчеркивания '_' .
+def split_pairs(text: str) -> list:
+    n = 2
+    new_list = []
+    for i in range(0, len(text), n):
+        element = text[i:i + n]
+        if len(element) == 1:
+            new_list.append(element + '_')
+        else:
+            new_list.append(element)
+    return new_list
+
+
+if __name__ == '__main__':
+    print("Example:")
+    print(list(split_pairs('abcd')))
+
+    # These "asserts" are used for self-checking and not for an auto-testing
+    assert list(split_pairs('abcd')) == ['ab', 'cd']
+    assert list(split_pairs('abc')) == ['ab', 'c_']
+    assert list(split_pairs('abcdf')) == ['ab', 'cd', 'f_']
+    assert list(split_pairs('a')) == ['a_']
+    assert list(split_pairs('')) == []
+    print("Coding complete? Click 'Check' to earn cool rewards!")
+
+#--------------------------------------------------------------------------------------------------------
+
+# TODO Задача 11.1. Разделить строку на пары символов. Если строка состоит из нечетного количества символов,
+#  то недостающий символ в результирующем списке пар заменяется на знак нижнего подчеркивания '_'(быстрый способ) .
+def split_pairs(a):
+    if len(a) % 2 != 0:
+        a += '_'
+    result = [a[i] + a[i + 1] for i in range(0, len(a), 2)]
+    return result
+
+
+if __name__ == '__main__':
+    print("Example:")
+    print(list(split_pairs('abcdf')))
+
+    # These "asserts" are used for self-checking and not for an auto-testing
+    assert list(split_pairs('abcd')) == ['ab', 'cd']
+    assert list(split_pairs('abc')) == ['ab', 'c_']
+    assert list(split_pairs('abcdf')) == ['ab', 'cd', 'f_']
+    assert list(split_pairs('a')) == ['a_']
+    assert list(split_pairs('')) == []
+    print("Coding complete? Click 'Check' to earn cool rewards!")
+
+#--------------------------------------------------------------------------------------------------------
+
+# TODO Задача 12. У вас есть строка, состоящая только из цифр. Вам нужно найти кол-во нулей ("0") находящихся в начале данной строки.(Через цикл while 2-мя способами)
+def beginning_zeros(number: str) -> int:
+    count = 0
+    while number.startswith('0'):
+        count += 1
+        number = number[1:]
+    return count
+
+def beginning_zeros(number: str) -> int:
+    # your code here
+    num_zero = 0
+    while number[num_zero] == '0':
+        num_zero += 1
+        if num_zero >= len(number):
+            break
+    return num_zero
+
+
+
+
+if __name__ == '__main__':
+    print("Example:")
+    print(beginning_zeros('100'))
+
+    # These "asserts" are used for self-checking and not for an auto-testing
+    assert beginning_zeros('100') == 0
+    assert beginning_zeros('001') == 2
+    assert beginning_zeros('100100') == 0
+    assert beginning_zeros('001001') == 2
+    assert beginning_zeros('012345679') == 1
+    assert beginning_zeros('0000') == 4
+    print("Coding complete? Click 'Check' to earn cool rewards!")
+
+#--------------------------------------------------------------------------------------------------------
+
+# TODO Задача 12.1 У вас есть строка, состоящая только из цифр. Вам нужно найти кол-во нулей ("0") находящихся в начале данной строки.(Через цикл for)
+def beginning_zeros(number: str, count=0) -> int:
+    for i in number:
+        if i == '0':
+            count += 1
+        else:
+            break
+    return count
+
+
+if __name__ == '__main__':
+    print("Example:")
+    print(beginning_zeros('100'))
+
+    # These "asserts" are used for self-checking and not for an auto-testing
+    assert beginning_zeros('100') == 0
+    assert beginning_zeros('001') == 2
+    assert beginning_zeros('100100') == 0
+    assert beginning_zeros('001001') == 2
+    assert beginning_zeros('012345679') == 1
+    assert beginning_zeros('0000') == 4
+    print("Coding complete? Click 'Check' to earn cool rewards!")
+
+#--------------------------------------------------------------------------------------------------------

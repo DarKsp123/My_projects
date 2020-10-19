@@ -11,6 +11,7 @@ assert max_value((1, 2, 3, 44, 56, 9, 10, 13, 23, 11, 38)) == 56
 assert max_value('') == 0
 assert max_value(()) == 0
 assert max_value([]) == 0
+print("Coding complete? Click 'Check' to earn cool rewards!")
 
 #--------------------------------------------------------------------------------------------------
 
@@ -125,6 +126,7 @@ if __name__ == '__main__':
     assert backward_string('123456789') == '987654321'
     print("Coding complete? Click 'Check' to earn cool rewards!")
 
+# --------------------------------------------------------------------------------------------------------
 
 #TODO Задача 6.1. Вернуть заданную строку в обратном порядке.(Классический алгоритм)
 
@@ -160,6 +162,7 @@ if __name__ == '__main__':
     assert list(remove_all_before([7, 7, 7, 7, 7, 7, 7, 7, 7], 7)) == [7, 7, 7, 7, 7, 7, 7, 7, 7]
     print("Coding complete? Click 'Check' to earn cool rewards!")
 
+#----------------------------------------------------------------------------------------------------------
 
 #TODO Задача 7.1. Удалить из списка все элементы найденные до первого вхождения заданного числа(Используем цикл for).
 from typing import Iterable
@@ -259,7 +262,7 @@ if __name__ == '__main__':
 #--------------------------------------------------------------------------------------------------------
 
 # TODO Задача 11. Разделить строку на пары символов. Если строка состоит из нечетного количества символов,
-#  то недостающий символ в результирующем списке пар заменяется на знак нижнего подчеркивания '_' .
+#  то недостающий символ в результирующем списке пар заменяется на знак нижнего подчеркивания '_'(классический алгоритм) .
 def split_pairs(a):
     # your code here
     return None
@@ -275,6 +278,66 @@ if __name__ == '__main__':
     assert list(split_pairs('abcdf')) == ['ab', 'cd', 'f_']
     assert list(split_pairs('a')) == ['a_']
     assert list(split_pairs('')) == []
+    print("Coding complete? Click 'Check' to earn cool rewards!")
+
+#--------------------------------------------------------------------------------------------------------
+
+# TODO Задача 11.1. Разделить строку на пары символов. Если строка состоит из нечетного количества символов,
+#  то недостающий символ в результирующем списке пар заменяется на знак нижнего подчеркивания '_'(быстрый способ) .
+def split_pairs(a):
+    # your code here
+    return None
+
+
+if __name__ == '__main__':
+    print("Example:")
+    print(list(split_pairs('abcd')))
+
+    # These "asserts" are used for self-checking and not for an auto-testing
+    assert list(split_pairs('abcd')) == ['ab', 'cd']
+    assert list(split_pairs('abc')) == ['ab', 'c_']
+    assert list(split_pairs('abcdf')) == ['ab', 'cd', 'f_']
+    assert list(split_pairs('a')) == ['a_']
+    assert list(split_pairs('')) == []
+    print("Coding complete? Click 'Check' to earn cool rewards!")
+
+#--------------------------------------------------------------------------------------------------------
+
+# TODO Задача 12. У вас есть строка, состоящая только из цифр. Вам нужно найти кол-во нулей ("0") находящихся в начале данной строки.(Чеерз цикл while 2-мя способами)
+def beginning_zeros(number: str) -> int:
+
+
+if __name__ == '__main__':
+    print("Example:")
+    print(beginning_zeros('100'))
+
+    # These "asserts" are used for self-checking and not for an auto-testing
+    assert beginning_zeros('100') == 0
+    assert beginning_zeros('001') == 2
+    assert beginning_zeros('100100') == 0
+    assert beginning_zeros('001001') == 2
+    assert beginning_zeros('012345679') == 1
+    assert beginning_zeros('0000') == 4
+    print("Coding complete? Click 'Check' to earn cool rewards!")
+
+#--------------------------------------------------------------------------------------------------------
+
+# TODO Задача 12.1 У вас есть строка, состоящая только из цифр. Вам нужно найти кол-во нулей ("0") находящихся в начале данной строки.(Через цикл for)
+def beginning_zeros(number: str, count=0) -> int:
+
+
+
+if __name__ == '__main__':
+    print("Example:")
+    print(beginning_zeros('100'))
+
+    # These "asserts" are used for self-checking and not for an auto-testing
+    assert beginning_zeros('100') == 0
+    assert beginning_zeros('001') == 2
+    assert beginning_zeros('100100') == 0
+    assert beginning_zeros('001001') == 2
+    assert beginning_zeros('012345679') == 1
+    assert beginning_zeros('0000') == 4
     print("Coding complete? Click 'Check' to earn cool rewards!")
 
 #--------------------------------------------------------------------------------------------------------
